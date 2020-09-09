@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LawWork1_V
+namespace LabWork1_V9_WindowsFormsBuses
 {
     static class Program
     {
@@ -16,7 +13,7 @@ namespace LawWork1_V
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormBus());
         }
     }
 }
