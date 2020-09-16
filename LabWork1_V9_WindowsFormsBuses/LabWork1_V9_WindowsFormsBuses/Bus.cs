@@ -16,7 +16,7 @@ namespace LabWork1_V9_WindowsFormsBuses
         //размеры автобуса
         private readonly int busHeight = 60;
         private readonly int busWidth = 100;
-
+        private readonly double changeHeight = 1.4;
         public Color MainColor { private set; get; }
         public Color AdditColor { private set; get; }
         public Color AdditColor2 { private set; get; }
@@ -72,7 +72,7 @@ namespace LabWork1_V9_WindowsFormsBuses
                     }
                     break;
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - 1.3 * busHeight)
+                    if (_startPosY + step < _pictureHeight - changeHeight * busHeight)
                     {
                         _startPosY += step;
                     }
