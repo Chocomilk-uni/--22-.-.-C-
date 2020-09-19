@@ -13,13 +13,13 @@ namespace LabWork1_V9_WindowsFormsBuses
         }
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxBuses.Width, pictureBoxBuses.Height); //полотно
-            Graphics gr = Graphics.FromImage(bmp); //с пом-ю него будем отрисовывать
+            Bitmap bmp = new Bitmap(pictureBoxBuses.Width, pictureBoxBuses.Height); 
+            Graphics gr = Graphics.FromImage(bmp); 
             doubleBus.DrawTransport(gr);
-            pictureBoxBuses.Image = bmp; //передаём получ. рисунок на picturebox
+            pictureBoxBuses.Image = bmp; 
         }
 
-        //скорость не очень правдоподобная, чтобы передвижение было более заметно
+        //скорость не очень правдоподобная, чтобы передвижение было более заметно (изначально стояла от 40 до 50)
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
