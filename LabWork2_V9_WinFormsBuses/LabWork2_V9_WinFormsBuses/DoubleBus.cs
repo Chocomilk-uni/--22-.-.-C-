@@ -4,13 +4,13 @@ namespace LabWork2_V9_WinFormsBuses
 {
     class DoubleBus : Bus
     {
-        public Color AdditColor { private set; get; }
+        public Color AdditionalColor { private set; get; }
         public bool SecondFloor { private set; get; }
         public bool AdditionalDoor { private set; get; }
         public bool FrontPlatform { private set; get; }
         public DoubleBus(Color mainColor, int averageSpeed, float weight, int seats, Color additColor, bool secondFloor, bool additionalDoor, bool frontPlatform) : base(mainColor, averageSpeed, weight, seats, 100, 60, 1.4)
         {
-            AdditColor = additColor;
+            AdditionalColor = additColor;
             SecondFloor = secondFloor;
             AdditionalDoor = additionalDoor;
             FrontPlatform = frontPlatform;
@@ -19,17 +19,16 @@ namespace LabWork2_V9_WinFormsBuses
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen pen2 = new Pen(AdditColor);
+            Pen pen2 = new Pen(AdditionalColor);
 
             base.DrawTransport(g);
 
             Brush brRed = new SolidBrush(MainColor);
-            Brush brWhite = new SolidBrush(AdditColor);
+            Brush brWhite = new SolidBrush(AdditionalColor);
 
             Brush brBlack = new SolidBrush(Color.Black);
             Brush brGray = new SolidBrush(Color.DarkSlateGray);
             
-
             if (FrontPlatform)
             {
                 g.DrawRectangle(pen, _startPosX, _startPosY + 55, 40, 15);
