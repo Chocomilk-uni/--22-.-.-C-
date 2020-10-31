@@ -19,7 +19,7 @@ namespace LabWork2_V9_WinFormsBuses
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen pen2 = new Pen(AdditionalColor);
+            Pen additionalPen = new Pen(AdditionalColor);
 
             base.DrawTransport(g);
 
@@ -56,7 +56,7 @@ namespace LabWork2_V9_WinFormsBuses
             if (AdditionalDoor)
             {
                 g.FillRectangle(brGray, _startPosX + 37, _startPosY + 40, 18, 32);
-                g.DrawLine(pen2, _startPosX + 46, _startPosY + 40, _startPosX + 46, _startPosY + 72);
+                g.DrawLine(additionalPen, _startPosX + 46, _startPosY + 40, _startPosX + 46, _startPosY + 72);
             }
         }
     }
