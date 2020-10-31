@@ -147,4 +147,3 @@
         private System.Windows.Forms.Button buttonCreateDoubleBus;
     }
 }
-
