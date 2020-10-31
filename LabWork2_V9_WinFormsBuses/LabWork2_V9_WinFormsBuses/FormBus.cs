@@ -19,7 +19,7 @@ namespace LabWork2_V9_WinFormsBuses
             pictureBoxBuses.Image = bmp; 
         }
 
-        //скорость не очень правдоподобная, чтобы передвижение было более заметно (изначально стояла от 40 до 50)
+        //Скорость не очень правдоподобная, чтобы передвижение было более заметно (изначально стояла от 40 до 50)
         private void buttonCreateBus_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
