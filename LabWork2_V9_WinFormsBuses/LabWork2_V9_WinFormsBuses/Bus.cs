@@ -60,7 +60,7 @@ namespace LabWork2_V9_WinFormsBuses
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen pen1 = new Pen(Color.White);
+            Pen additionalPen = new Pen(Color.White);
 
             //осн.кузов
             Brush brRed = new SolidBrush(MainColor);
@@ -76,7 +76,7 @@ namespace LabWork2_V9_WinFormsBuses
 
             //дверь
             g.FillRectangle(brGray, _startPosX + 87, _startPosY + 40, 18, 32);
-            g.DrawLine(pen1, _startPosX + 96, _startPosY + 40, _startPosX + 96, _startPosY + 72);
+            g.DrawLine(additionalPen, _startPosX + 96, _startPosY + 40, _startPosX + 96, _startPosY + 72);
 
             //колёса
             g.FillEllipse(brBlack, _startPosX + 10, _startPosY + 60, 22, 22);
