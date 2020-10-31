@@ -42,13 +42,13 @@ namespace LabWork2_V9_WinFormsBuses
                 g.DrawRectangle(pen, _startPosX, _startPosY + 5, busWidth + 5, 25);
                 g.FillRectangle(brRed, _startPosX, _startPosY + 5, busWidth + 5, 25);
 
-                //окна 2-го этажа
+                //Окна 2-го этажа
                 g.FillRectangle(brBlack, _startPosX + 2, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 32, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 62, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 92, _startPosY + 10, 14, 10);
 
-                //полоса
+                //Полоса
                 g.DrawRectangle(pen, _startPosX, _startPosY + 24, busWidth + 5, 3);
                 g.FillRectangle(brWhite, _startPosX, _startPosY + 24, busWidth + 5, 3);
             }
