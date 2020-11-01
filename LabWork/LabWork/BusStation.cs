@@ -11,7 +11,7 @@ namespace LabWork
         private readonly int pictureWidth;
         private readonly int pictureHeight;
 
-        //Размеры парковочного места
+        //Размеры места на автовокзале
         private readonly int _placeSizeWidth = 230;
         private readonly int _placeSizeHeight = 100;
 
