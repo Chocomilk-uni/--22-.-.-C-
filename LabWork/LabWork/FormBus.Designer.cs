@@ -108,7 +108,6 @@
             this.Text = "Автобус";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBuses)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
