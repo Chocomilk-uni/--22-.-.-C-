@@ -1,25 +1,23 @@
 ﻿using System.Drawing;
 
-
-namespace LabWork1_V9_WindowsFormsBuses
+namespace LabWork
 {
     class Bus
     {
-        //координаты отрисовки
+        //Координаты отрисовки
         private float _startPosX;
         private float _startPosY;
 
-        //поле отрисовки
+        //Поле отрисовки
         private int _pictureWidth;
         private int _pictureHeight;
 
-        //размеры автобуса
+        //Размеры автобуса
         private readonly int busHeight = 60;
         private readonly int busWidth = 100;
         private readonly double changeHeight = 1.4;
         public Color MainColor { private set; get; }
         public Color AdditColor { private set; get; }
-        public Color AdditColor2 { private set; get; }
         public int AverageSpeed { private set; get; }
         public float Weight { private set; get; }
         public int Seats { private set; get; }
@@ -27,11 +25,10 @@ namespace LabWork1_V9_WindowsFormsBuses
         public bool AdditionalDoor { private set; get; }
         public bool FrontPlatform { private set; get; }
 
-        public Bus(Color mainColor, Color additColor, Color additColor2, int averageSpeed, float weight, int seats, bool secondFloor, bool additionalDoors, bool backPlatform)
+        public Bus(Color mainColor, Color additionalColor, int averageSpeed, float weight, int seats, bool secondFloor, bool additionalDoors, bool backPlatform)
         {
             MainColor = mainColor;
-            AdditColor = additColor;
-            AdditColor2 = additColor2;
+            AdditColor = additionalColor;
             AverageSpeed = averageSpeed;
             Weight = weight;
             Seats = seats;
@@ -84,19 +81,19 @@ namespace LabWork1_V9_WindowsFormsBuses
         {
             Pen pen = new Pen(Color.Black);
 
-            //осн.кузов
+            //Основной кузов
             Brush brRed = new SolidBrush(MainColor);
             g.DrawRectangle(pen, _startPosX + 5, _startPosY + 30, busWidth, 40);
             g.FillRectangle(brRed, _startPosX + 5, _startPosY + 30, busWidth, 40);
 
             Brush brBlack = new SolidBrush(AdditColor);
-            Brush brWhite = new SolidBrush(AdditColor2);
+            Brush brWhite = new SolidBrush(Color.White);
 
-            //окна
+            //Окна
             g.FillRectangle(brBlack, _startPosX + 12, _startPosY + 35, 20, 15);
             g.FillRectangle(brBlack, _startPosX + 62, _startPosY + 35, 20, 15);
 
-            //дверь
+            //Дверь
             g.FillRectangle(brBlack, _startPosX + 87, _startPosY + 40, 18, 32);
 
             if (FrontPlatform)
@@ -106,7 +103,7 @@ namespace LabWork1_V9_WindowsFormsBuses
                 g.FillRectangle(brBlack, _startPosX + 5, _startPosY + 35, 25, 15);
             }
 
-            //колёса
+            //Колёса
             g.FillEllipse(brBlack, _startPosX + 10, _startPosY + 60, 22, 22);
             g.FillEllipse(brBlack, _startPosX + 65, _startPosY + 60, 22, 22);
 
@@ -115,13 +112,13 @@ namespace LabWork1_V9_WindowsFormsBuses
                 g.DrawRectangle(pen, _startPosX, _startPosY + 5, busWidth + 5, 25);
                 g.FillRectangle(brRed, _startPosX, _startPosY + 5, busWidth + 5, 25);
 
-                //окна 2-го этажа
+                //Окна 2-го этажа
                 g.FillRectangle(brBlack, _startPosX + 2, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 32, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 62, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 92, _startPosY + 10, 14, 10);
 
-                //полоса
+                //Полоса
                 g.DrawRectangle(pen, _startPosX, _startPosY + 24, busWidth + 5, 3);
                 g.FillRectangle(brWhite, _startPosX, _startPosY + 24, busWidth + 5, 3);
             }

@@ -1,4 +1,4 @@
-﻿namespace LabWork1_V9_WindowsFormsBuses
+﻿namespace LabWork
 {
     enum Direction
     {

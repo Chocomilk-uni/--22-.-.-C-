@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace LabWork1_V9_WindowsFormsBuses
+namespace LabWork
 {
     public partial class FormBus : Form
     {
@@ -19,11 +19,11 @@ namespace LabWork1_V9_WindowsFormsBuses
             pictureBoxBuses.Image = bmp; 
         }
 
-        //скорость не очень правдоподобная, чтобы передвижение было более заметно (изначально стояла от 40 до 50)
+        //Скорость не очень правдоподобная, чтобы передвижение было более заметно (изначально стояла от 40 до 50)
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            doubleBus = new Bus(Color.Red, Color.Black, Color.White, rnd.Next(1000, 1500), rnd.Next(5500, 8500), rnd.Next(20, 40), true, true, true);
+            doubleBus = new Bus(Color.Red, Color.Black, rnd.Next(1000, 1500), rnd.Next(5500, 8500), rnd.Next(20, 40), true, true, true);
             doubleBus.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBuses.Width, pictureBoxBuses.Height);
             Draw();
         }

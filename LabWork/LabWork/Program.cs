@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace LabWork1_V9_WindowsFormsBuses
+namespace LabWork
 {
     static class Program
     {

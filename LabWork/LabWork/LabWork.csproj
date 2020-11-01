@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{30A04D83-1162-45F2-AEA7-544436B88A43}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LabWork1_V9_WindowsFormsBuses</RootNamespace>
-    <AssemblyName>LabWork1_V9_WindowsFormsBuses</AssemblyName>
+    <RootNamespace>LabWork</RootNamespace>
+    <AssemblyName>LabWork</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
