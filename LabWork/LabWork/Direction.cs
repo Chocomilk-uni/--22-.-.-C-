@@ -1,4 +1,4 @@
-﻿namespace LabWork2_V9_WinFormsBuses
+﻿namespace LabWork
 {
     public enum Direction
     {

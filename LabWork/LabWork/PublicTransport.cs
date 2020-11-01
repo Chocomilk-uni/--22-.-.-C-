@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace LabWork2_V9_WinFormsBuses
+namespace LabWork
 {
     public abstract class PublicTransport : ITransport
     {

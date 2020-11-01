@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace LabWork2_V9_WinFormsBuses
+namespace LabWork
 {
     class DoubleBus : Bus
     {
@@ -8,9 +8,9 @@ namespace LabWork2_V9_WinFormsBuses
         public bool SecondFloor { private set; get; }
         public bool AdditionalDoor { private set; get; }
         public bool FrontPlatform { private set; get; }
-        public DoubleBus(Color mainColor, int averageSpeed, float weight, int seats, Color additColor, bool secondFloor, bool additionalDoor, bool frontPlatform) : base(mainColor, averageSpeed, weight, seats, 100, 60, 1.4)
+        public DoubleBus(Color mainColor, int averageSpeed, float weight, int seats, Color additionalColor, bool secondFloor, bool additionalDoor, bool frontPlatform) : base(mainColor, averageSpeed, weight, seats, 100, 60, 1.4)
         {
-            AdditionalColor = additColor;
+            AdditionalColor = additionalColor;
             SecondFloor = secondFloor;
             AdditionalDoor = additionalDoor;
             FrontPlatform = frontPlatform;
@@ -19,7 +19,7 @@ namespace LabWork2_V9_WinFormsBuses
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen pen2 = new Pen(AdditionalColor);
+            Pen additionalPen = new Pen(AdditionalColor);
 
             base.DrawTransport(g);
 
@@ -42,13 +42,13 @@ namespace LabWork2_V9_WinFormsBuses
                 g.DrawRectangle(pen, _startPosX, _startPosY + 5, busWidth + 5, 25);
                 g.FillRectangle(brRed, _startPosX, _startPosY + 5, busWidth + 5, 25);
 
-                //окна 2-го этажа
+                //Окна 2-го этажа
                 g.FillRectangle(brBlack, _startPosX + 2, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 32, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 62, _startPosY + 10, 20, 10);
                 g.FillRectangle(brBlack, _startPosX + 92, _startPosY + 10, 14, 10);
 
-                //полоса
+                //Полоса
                 g.DrawRectangle(pen, _startPosX, _startPosY + 24, busWidth + 5, 3);
                 g.FillRectangle(brWhite, _startPosX, _startPosY + 24, busWidth + 5, 3);
             }
@@ -56,7 +56,7 @@ namespace LabWork2_V9_WinFormsBuses
             if (AdditionalDoor)
             {
                 g.FillRectangle(brGray, _startPosX + 37, _startPosY + 40, 18, 32);
-                g.DrawLine(pen2, _startPosX + 46, _startPosY + 40, _startPosX + 46, _startPosY + 72);
+                g.DrawLine(additionalPen, _startPosX + 46, _startPosY + 40, _startPosX + 46, _startPosY + 72);
             }
         }
     }

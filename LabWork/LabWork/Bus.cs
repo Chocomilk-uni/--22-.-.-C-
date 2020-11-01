@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
 
-namespace LabWork2_V9_WinFormsBuses
+namespace LabWork
 {
     class Bus : PublicTransport
     {
-        //размеры автобуса
+        //Размеры автобуса
         protected readonly int busHeight = 60;
         protected readonly int busWidth = 100;
         protected readonly double changeHeight = 1.4;
@@ -60,9 +60,9 @@ namespace LabWork2_V9_WinFormsBuses
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen pen1 = new Pen(Color.White);
+            Pen additionalPen = new Pen(Color.White);
 
-            //осн.кузов
+            //Основной кузов
             Brush brRed = new SolidBrush(MainColor);
             g.DrawRectangle(pen, _startPosX + 5, _startPosY + 30, busWidth, 40);
             g.FillRectangle(brRed, _startPosX + 5, _startPosY + 30, busWidth, 40);
@@ -70,15 +70,15 @@ namespace LabWork2_V9_WinFormsBuses
             Brush brBlack = new SolidBrush(Color.Black);
             Brush brGray = new SolidBrush(Color.DarkSlateGray);
 
-            //окна
+            //Окна
             g.FillRectangle(brBlack, _startPosX + 5, _startPosY + 40, 28, 12);
             g.FillRectangle(brBlack, _startPosX + 62, _startPosY + 40, 20, 12);
 
-            //дверь
+            //Дверь
             g.FillRectangle(brGray, _startPosX + 87, _startPosY + 40, 18, 32);
-            g.DrawLine(pen1, _startPosX + 96, _startPosY + 40, _startPosX + 96, _startPosY + 72);
+            g.DrawLine(additionalPen, _startPosX + 96, _startPosY + 40, _startPosX + 96, _startPosY + 72);
 
-            //колёса
+            //Колёса
             g.FillEllipse(brBlack, _startPosX + 10, _startPosY + 60, 22, 22);
             g.FillEllipse(brBlack, _startPosX + 65, _startPosY + 60, 22, 22);
         }

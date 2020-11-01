@@ -1,4 +1,4 @@
-﻿namespace LabWork2_V9_WinFormsBuses
+﻿namespace LabWork
 {
     partial class FormBus
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCreateBus = new System.Windows.Forms.Button();
+           this.buttonCreateBus = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
@@ -52,7 +52,7 @@
             // buttonRight
             // 
             this.buttonRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRight.BackgroundImage = global::LabWork2_V9_WinFormsBuses.Properties.Resources.right;
+            this.buttonRight.BackgroundImage = global::LabWork.Properties.Resources.right;
             this.buttonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonRight.Location = new System.Drawing.Point(833, 419);
             this.buttonRight.Name = "buttonRight";
@@ -64,7 +64,7 @@
             // buttonDown
             // 
             this.buttonDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDown.BackgroundImage = global::LabWork2_V9_WinFormsBuses.Properties.Resources.down;
+            this.buttonDown.BackgroundImage = global::LabWork.Properties.Resources.down;
             this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDown.Location = new System.Drawing.Point(797, 419);
             this.buttonDown.Name = "buttonDown";
@@ -76,7 +76,7 @@
             // buttonLeft
             // 
             this.buttonLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLeft.BackgroundImage = global::LabWork2_V9_WinFormsBuses.Properties.Resources.left;
+            this.buttonLeft.BackgroundImage = global::LabWork.Properties.Resources.left;
             this.buttonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonLeft.Location = new System.Drawing.Point(761, 419);
             this.buttonLeft.Name = "buttonLeft";
@@ -88,7 +88,7 @@
             // buttonUp
             // 
             this.buttonUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonUp.BackgroundImage = global::LabWork2_V9_WinFormsBuses.Properties.Resources.up;
+            this.buttonUp.BackgroundImage = global::LabWork.Properties.Resources.up;
             this.buttonUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonUp.Location = new System.Drawing.Point(797, 383);
             this.buttonUp.Name = "buttonUp";
@@ -148,4 +148,3 @@
         private System.Windows.Forms.Button buttonCreateDoubleBus;
     }
 }
-
