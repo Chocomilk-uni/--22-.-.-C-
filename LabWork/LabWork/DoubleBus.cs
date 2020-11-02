@@ -19,7 +19,7 @@ namespace LabWork
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Pen additionalPen = new Pen(AdditionalColor);
+            Pen additionalPen = new Pen(Color.White);
 
             base.DrawTransport(g);
 
@@ -58,6 +58,12 @@ namespace LabWork
                 g.FillRectangle(brGray, _startPosX + 37, _startPosY + 40, 18, 32);
                 g.DrawLine(additionalPen, _startPosX + 46, _startPosY + 40, _startPosX + 46, _startPosY + 72);
             }
+        }
+
+        //Смена дополнительного цвета
+        public void SetAdditionalColor(Color color)
+        {
+            AdditionalColor = color;
         }
     }
 }

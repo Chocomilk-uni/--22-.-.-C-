@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxBusStation = new System.Windows.Forms.PictureBox();
-            this.buttonParkBus = new System.Windows.Forms.Button();
-            this.buttonParkDoubleBus = new System.Windows.Forms.Button();
             this.groupBoxPickBus = new System.Windows.Forms.GroupBox();
             this.buttonPickBus = new System.Windows.Forms.Button();
             this.maskedTextBoxPlaceNumber = new System.Windows.Forms.MaskedTextBox();
@@ -40,40 +37,11 @@
             this.buttonRemoveBusStation = new System.Windows.Forms.Button();
             this.listBoxBusStations = new System.Windows.Forms.ListBox();
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).BeginInit();
+            this.pictureBoxBusStation = new System.Windows.Forms.PictureBox();
+            this.buttonAddBus = new System.Windows.Forms.Button();
             this.groupBoxPickBus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxBusStation
-            // 
-            this.pictureBoxBusStation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxBusStation.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxBusStation.Name = "pictureBoxParking";
-            this.pictureBoxBusStation.Size = new System.Drawing.Size(707, 461);
-            this.pictureBoxBusStation.TabIndex = 0;
-            this.pictureBoxBusStation.TabStop = false;
-            // 
-            // buttonParkBus
-            // 
-            this.buttonParkBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonParkBus.Location = new System.Drawing.Point(722, 234);
-            this.buttonParkBus.Name = "buttonParkBus";
-            this.buttonParkBus.Size = new System.Drawing.Size(150, 40);
-            this.buttonParkBus.TabIndex = 1;
-            this.buttonParkBus.Text = "Припарковать автобус";
-            this.buttonParkBus.UseVisualStyleBackColor = true;
-            this.buttonParkBus.Click += new System.EventHandler(this.buttonParkBus_Click);
-            // 
-            // buttonParkDoubleBus
-            // 
-            this.buttonParkDoubleBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonParkDoubleBus.Location = new System.Drawing.Point(722, 280);
-            this.buttonParkDoubleBus.Name = "buttonParkDoubleBus";
-            this.buttonParkDoubleBus.Size = new System.Drawing.Size(150, 48);
-            this.buttonParkDoubleBus.TabIndex = 2;
-            this.buttonParkDoubleBus.Text = "Припарковать двухэтажный автобус";
-            this.buttonParkDoubleBus.UseVisualStyleBackColor = true;
-            this.buttonParkDoubleBus.Click += new System.EventHandler(this.buttonParkDoubleBus_Click);
             // 
             // groupBoxPickBus
             // 
@@ -81,7 +49,7 @@
             this.groupBoxPickBus.Controls.Add(this.maskedTextBoxPlaceNumber);
             this.groupBoxPickBus.Controls.Add(this.labelPlace);
             this.groupBoxPickBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxPickBus.Location = new System.Drawing.Point(722, 347);
+            this.groupBoxPickBus.Location = new System.Drawing.Point(722, 324);
             this.groupBoxPickBus.Name = "groupBoxPickBus";
             this.groupBoxPickBus.Size = new System.Drawing.Size(150, 114);
             this.groupBoxPickBus.TabIndex = 3;
@@ -127,8 +95,6 @@
             // 
             // buttonAddBusStation
             // 
-            this.buttonAddBusStation.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonAddBusStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonAddBusStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddBusStation.Location = new System.Drawing.Point(722, 46);
             this.buttonAddBusStation.Name = "buttonAddBusStation";
@@ -167,26 +133,45 @@
             this.textBoxNewLevelName.Size = new System.Drawing.Size(150, 20);
             this.textBoxNewLevelName.TabIndex = 9;
             // 
+            // pictureBoxBusStation
+            // 
+            this.pictureBoxBusStation.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxBusStation.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxBusStation.Name = "pictureBoxBusStation";
+            this.pictureBoxBusStation.Size = new System.Drawing.Size(707, 461);
+            this.pictureBoxBusStation.TabIndex = 0;
+            this.pictureBoxBusStation.TabStop = false;
+            // 
+            // buttonAddBus
+            // 
+            this.buttonAddBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddBus.Location = new System.Drawing.Point(722, 251);
+            this.buttonAddBus.Name = "buttonAddBus";
+            this.buttonAddBus.Size = new System.Drawing.Size(150, 42);
+            this.buttonAddBus.TabIndex = 10;
+            this.buttonAddBus.Text = "Добавить автобус";
+            this.buttonAddBus.UseVisualStyleBackColor = true;
+            this.buttonAddBus.Click += new System.EventHandler(this.buttonAddBus_Click);
+            // 
             // FormBusStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.buttonAddBus);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.buttonRemoveBusStation);
             this.Controls.Add(this.listBoxBusStations);
             this.Controls.Add(this.buttonAddBusStation);
             this.Controls.Add(this.labelBusStations);
             this.Controls.Add(this.groupBoxPickBus);
-            this.Controls.Add(this.buttonParkDoubleBus);
-            this.Controls.Add(this.buttonParkBus);
             this.Controls.Add(this.pictureBoxBusStation);
             this.Name = "FormBusStation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Автовокзал";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).EndInit();
             this.groupBoxPickBus.ResumeLayout(false);
             this.groupBoxPickBus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,8 +180,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxBusStation;
-        private System.Windows.Forms.Button buttonParkBus;
-        private System.Windows.Forms.Button buttonParkDoubleBus;
         private System.Windows.Forms.GroupBox groupBoxPickBus;
         private System.Windows.Forms.Button buttonPickBus;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxPlaceNumber;
@@ -206,5 +189,6 @@
         private System.Windows.Forms.Button buttonRemoveBusStation;
         private System.Windows.Forms.ListBox listBoxBusStations;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
+        private System.Windows.Forms.Button buttonAddBus;
     }
 }
