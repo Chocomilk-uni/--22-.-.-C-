@@ -7,10 +7,23 @@ namespace LabWork
     public partial class FormBusConfig : Form
     {
         //Переменная - выбранный автобус
-        PublicTransport bus = null;
+        private Bus bus = null;
 
-        //Поле-событие
-        private event BusDelegate eventAddBus;
+        //Поле-событие (встроенный делегат)
+        private Action<Bus> eventAddBus;
+
+        //Метод добавления события
+        public void AddEvent(Action<Bus> ev)
+        {
+            if (eventAddBus == null)
+            {
+                eventAddBus = new Action<Bus>(ev);
+            }
+            else
+            {
+                eventAddBus += ev;
+            }
+        }
 
         public FormBusConfig()
         {
@@ -24,19 +37,6 @@ namespace LabWork
             panelTurquoise.MouseDown += panelColor_MouseDown;
             panelYellow.MouseDown += panelColor_MouseDown;
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
-        }
-
-        //Метод добавления события
-        public void AddEvent(BusDelegate ev)
-        {
-            if (eventAddBus == null)
-            {
-                eventAddBus = new BusDelegate(ev);
-            }
-            else
-            {
-                eventAddBus += ev;
-            }
         }
 
         //Отрисовка автобуса
@@ -93,6 +93,7 @@ namespace LabWork
             DrawBus();
         }
 
+        //Проверка получаемой информации (для главного цвета и дополнительного)
         private void labelMainColor_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(typeof(Color)))
@@ -105,6 +106,7 @@ namespace LabWork
             }
         }
 
+        //Действия при приёме перетаскиваемой информации (основной цвет)
         private void labelMainColor_DragDrop(object sender, DragEventArgs e)
         {
             if (bus != null)
@@ -114,13 +116,14 @@ namespace LabWork
             }
         }
 
-        //Отправляем цвет с панели
+        //Универсальный метод для всех панелей с цветами
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
             Control panelColor = (Control)sender;
             panelColor.DoDragDrop(panelColor.BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
 
+        //Действия при приёме перетаскиваемой информации (дополнительный цвет)
         private void labelAdditionalColor_DragDrop(object sender, DragEventArgs e)
         {
             if (bus is DoubleBus)
@@ -131,8 +134,10 @@ namespace LabWork
             }
         }
 
+        //Обработка нажатия кнопки "Добавить автобус"
         private void buttonOk_Click(object sender, EventArgs e)
         {
+            //Вызов события
             eventAddBus?.Invoke(bus);
             Close();
         }

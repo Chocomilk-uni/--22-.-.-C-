@@ -141,10 +141,14 @@ namespace LabWork
             Draw();
         }
 
+        //Метод обработки нажатия кнопки "Добавить автомобиль"
         private void buttonAddBus_Click(object sender, EventArgs e)
         {
+            //Объект от формы с параметрами
             var formBusConfig = new FormBusConfig();
+            //Связываем событие с методом
             formBusConfig.AddEvent(AddBus);
+            //Вызов формы
             formBusConfig.Show();
         }
 

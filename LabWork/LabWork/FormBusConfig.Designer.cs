@@ -436,7 +436,6 @@
             this.panelBus.ResumeLayout(false);
             this.groupBoxColors.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

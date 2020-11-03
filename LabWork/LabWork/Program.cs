@@ -3,7 +3,6 @@ using System.Windows.Forms;
 
 namespace LabWork
 {
-    public delegate void BusDelegate(PublicTransport Bus);
     static class Program
     {
         /// <summary>

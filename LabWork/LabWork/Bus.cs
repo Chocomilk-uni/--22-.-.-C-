@@ -2,7 +2,7 @@
 
 namespace LabWork
 {
-    class Bus : PublicTransport
+    public class Bus : PublicTransport
     {
         //Размеры автобуса
         protected readonly int busHeight = 60;
