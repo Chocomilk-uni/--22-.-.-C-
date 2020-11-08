@@ -140,5 +140,32 @@ namespace LabWork
         {
             Draw();
         }
+
+        //Метод обработки нажатия кнопки "Добавить автомобиль"
+        private void buttonAddBus_Click(object sender, EventArgs e)
+        {
+            //Объект от формы с параметрами
+            var formBusConfig = new FormBusConfig();
+            //Связываем событие с методом
+            formBusConfig.AddEvent(AddBus);
+            //Вызов формы
+            formBusConfig.Show();
+        }
+
+        //Метод добавления автобуса
+        private void AddBus(PublicTransport bus)
+        {
+            if (bus != null && listBoxBusStations.SelectedIndex > -1)
+            {
+                if ((busStationCollection[listBoxBusStations.SelectedItem.ToString()]) + bus)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Автобус не удалось поставить");
+                }
+            }
+        }
     }
 }
