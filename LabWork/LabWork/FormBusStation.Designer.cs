@@ -39,8 +39,15 @@
             this.textBoxNewLevelName = new System.Windows.Forms.TextBox();
             this.pictureBoxBusStation = new System.Windows.Forms.PictureBox();
             this.buttonAddBus = new System.Windows.Forms.Button();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxPickBus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxPickBus
@@ -49,7 +56,7 @@
             this.groupBoxPickBus.Controls.Add(this.maskedTextBoxPlaceNumber);
             this.groupBoxPickBus.Controls.Add(this.labelPlace);
             this.groupBoxPickBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxPickBus.Location = new System.Drawing.Point(722, 324);
+            this.groupBoxPickBus.Location = new System.Drawing.Point(722, 335);
             this.groupBoxPickBus.Name = "groupBoxPickBus";
             this.groupBoxPickBus.Size = new System.Drawing.Size(150, 114);
             this.groupBoxPickBus.TabIndex = 3;
@@ -87,7 +94,7 @@
             // 
             this.labelBusStations.AutoSize = true;
             this.labelBusStations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelBusStations.Location = new System.Drawing.Point(744, 0);
+            this.labelBusStations.Location = new System.Drawing.Point(750, 34);
             this.labelBusStations.Name = "labelBusStations";
             this.labelBusStations.Size = new System.Drawing.Size(99, 16);
             this.labelBusStations.TabIndex = 4;
@@ -96,7 +103,7 @@
             // buttonAddBusStation
             // 
             this.buttonAddBusStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddBusStation.Location = new System.Drawing.Point(722, 46);
+            this.buttonAddBusStation.Location = new System.Drawing.Point(722, 88);
             this.buttonAddBusStation.Name = "buttonAddBusStation";
             this.buttonAddBusStation.Size = new System.Drawing.Size(150, 28);
             this.buttonAddBusStation.TabIndex = 6;
@@ -107,7 +114,7 @@
             // buttonRemoveBusStation
             // 
             this.buttonRemoveBusStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRemoveBusStation.Location = new System.Drawing.Point(722, 185);
+            this.buttonRemoveBusStation.Location = new System.Drawing.Point(722, 222);
             this.buttonRemoveBusStation.Name = "buttonRemoveBusStation";
             this.buttonRemoveBusStation.Size = new System.Drawing.Size(150, 31);
             this.buttonRemoveBusStation.TabIndex = 8;
@@ -120,7 +127,7 @@
             this.listBoxBusStations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBoxBusStations.FormattingEnabled = true;
             this.listBoxBusStations.ItemHeight = 15;
-            this.listBoxBusStations.Location = new System.Drawing.Point(722, 84);
+            this.listBoxBusStations.Location = new System.Drawing.Point(722, 122);
             this.listBoxBusStations.Name = "listBoxBusStations";
             this.listBoxBusStations.Size = new System.Drawing.Size(150, 94);
             this.listBoxBusStations.TabIndex = 7;
@@ -128,7 +135,7 @@
             // 
             // textBoxNewLevelName
             // 
-            this.textBoxNewLevelName.Location = new System.Drawing.Point(722, 20);
+            this.textBoxNewLevelName.Location = new System.Drawing.Point(722, 62);
             this.textBoxNewLevelName.Name = "textBoxNewLevelName";
             this.textBoxNewLevelName.Size = new System.Drawing.Size(150, 20);
             this.textBoxNewLevelName.TabIndex = 9;
@@ -136,22 +143,64 @@
             // pictureBoxBusStation
             // 
             this.pictureBoxBusStation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxBusStation.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxBusStation.Location = new System.Drawing.Point(0, 24);
             this.pictureBoxBusStation.Name = "pictureBoxBusStation";
-            this.pictureBoxBusStation.Size = new System.Drawing.Size(707, 461);
+            this.pictureBoxBusStation.Size = new System.Drawing.Size(707, 437);
             this.pictureBoxBusStation.TabIndex = 0;
             this.pictureBoxBusStation.TabStop = false;
             // 
             // buttonAddBus
             // 
             this.buttonAddBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddBus.Location = new System.Drawing.Point(722, 251);
+            this.buttonAddBus.Location = new System.Drawing.Point(722, 276);
             this.buttonAddBus.Name = "buttonAddBus";
             this.buttonAddBus.Size = new System.Drawing.Size(150, 42);
             this.buttonAddBus.TabIndex = 10;
             this.buttonAddBus.Text = "Добавить автобус";
             this.buttonAddBus.UseVisualStyleBackColor = true;
             this.buttonAddBus.Click += new System.EventHandler(this.buttonAddBus_Click);
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip.TabIndex = 11;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.загрузитьToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "txt file | *.txt";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "txt file | *.txt";
             // 
             // FormBusStation
             // 
@@ -166,12 +215,16 @@
             this.Controls.Add(this.labelBusStations);
             this.Controls.Add(this.groupBoxPickBus);
             this.Controls.Add(this.pictureBoxBusStation);
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "FormBusStation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Автовокзал";
             this.groupBoxPickBus.ResumeLayout(false);
             this.groupBoxPickBus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBusStation)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +243,11 @@
         private System.Windows.Forms.ListBox listBoxBusStations;
         private System.Windows.Forms.TextBox textBoxNewLevelName;
         private System.Windows.Forms.Button buttonAddBus;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

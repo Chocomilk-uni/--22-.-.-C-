@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace LabWork
 {
@@ -8,12 +9,27 @@ namespace LabWork
         protected readonly int busHeight = 60;
         protected readonly int busWidth = 100;
         protected readonly double changeHeight = 1.4;
+
+        //Разделитель для записи информации по объекту в файл
+        protected readonly char separator = ';';
         public Bus(Color mainColor, int averageSpeed, float weight, int seats)
         {
             MainColor = mainColor;
             AverageSpeed = averageSpeed;
             Weight = weight;
             Seats = seats;
+        }
+        //Конструктор для загрузки с файла
+        public Bus(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 4)
+            {
+                MainColor = Color.FromName(strs[0]);
+                AverageSpeed = Convert.ToInt32(strs[1]);
+                Weight = Convert.ToInt32(strs[2]);
+                Seats = Convert.ToInt32(strs[3]);
+            }
         }
         protected Bus(Color mainColor, int averageSpeed, float weight, int seats, int busWidth, int busHeight, double changeHeight)
         {
@@ -81,6 +97,12 @@ namespace LabWork
             //Колёса
             g.FillEllipse(brBlack, _startPosX + 10, _startPosY + 60, 22, 22);
             g.FillEllipse(brBlack, _startPosX + 65, _startPosY + 60, 22, 22);
+        }
+
+        //Переопределение метода ToString() для получения строки из объекта
+        public override string ToString()
+        {
+            return $"{MainColor.Name}{separator}{AverageSpeed}{separator}{Weight}{separator}{Seats}";
         }
     }
 }
