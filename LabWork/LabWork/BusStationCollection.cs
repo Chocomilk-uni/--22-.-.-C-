@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -71,38 +70,28 @@ namespace LabWork
         //Сохранение информации по автобусам на автовокзалах в файл
         public bool SaveData(string filename)
         {
-            if (File.Exists(filename))
+            using (StreamWriter sw = new StreamWriter(filename, false, System.Text.Encoding.Default))
             {
-                File.Delete(filename);
-            }
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
-            {
-                WriteToFile($"BusStationCollection{Environment.NewLine}", fs);
+                sw.WriteLine("BusStationCollection");
                 foreach (var level in busStationStages)
                 {
-                    //Начинаем автовокзал
-                    WriteToFile($"BusStation{separator}{level.Key}{Environment.NewLine}", fs);
-                    ITransport bus = null;
+                    sw.WriteLine("BusStation" + separator + level.Key);
+                    ITransport bus;
                     for (int i = 0; (bus = level.Value.GetNext(i)) != null; i++)
                     {
-                        if (bus != null)
+                        if (bus.GetType().Name == "Bus")
                         {
-                            //Если место не пустое, записываем тип автобуса
-                            if (bus.GetType().Name == "Bus")
-                            {
-                                WriteToFile($"Bus{separator}", fs);
-                            }
-                            if (bus.GetType().Name == "DoubleBus")
-                            {
-                                WriteToFile($"DoubleBus{separator}", fs);
-                            }
-                            //Записываем параметры
-                            WriteToFile(bus + Environment.NewLine, fs);
+                            sw.Write("Bus" + separator);
                         }
+                        else if (bus.GetType().Name == "DoubleBus")
+                        {
+                            sw.Write("DoubleBus" + separator);
+                        }
+                        sw.WriteLine(bus);
                     }
                 }
+                return true;
             }
-            return true;
         }
 
         //Загрузка информации по автобусам на автовокзалах из файла
@@ -112,60 +101,47 @@ namespace LabWork
             {
                 return false;
             }
-            string bufferTextFromFile = "";
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
-            {
-                byte[] b = new byte[fs.Length];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    bufferTextFromFile += temp.GetString(b);
-                }
-            }
-            bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
-            var strs = bufferTextFromFile.Split('\n');
-            if (strs[0].Contains("BusStationCollection"))
-            {
-                //Очищаем записи
-                busStationStages.Clear();
-            }
-            else
-            {
-                //Если нет такой записи, значит это не те даные
-                return false;
-            }
-            PublicTransport bus = null;
-            string key = string.Empty;
-            for (int i = 1; i < strs.Length; i++)
-            {
-                //Идём по считанным записям
-                if (strs[i].Contains("BusStation"))
-                {
-                    //Начинаем новую парковку
-                    key = strs[i].Split(separator)[1];
-                    busStationStages.Add(key, new BusStation<PublicTransport>(pictureWidth, pictureHeight));
-                    continue;
-                }
-                if (string.IsNullOrEmpty(strs[i]))
-                {
-                    continue;
-                }
-                if (strs[i].Split(separator)[0] == "Bus")
-                {
-                    bus = new Bus(strs[i].Split(separator)[1]);
-                }
-                if (strs[i].Split(separator)[0] == "DoubleBus")
-                {
-                    bus = new DoubleBus(strs[i].Split(separator)[1]);
-                }
 
-                var result = busStationStages[key] + bus;
-                if (!result)
+            using (StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default))
+            {
+                if (sr.ReadLine().Contains("BusStationCollection"))
+                {
+                    busStationStages.Clear();
+                }
+                else
                 {
                     return false;
                 }
+
+                Bus bus = null;
+                string key = string.Empty;
+                string line;
+
+                for (int i = 0; (line = sr.ReadLine()) != null; i++)
+                {
+                    if (line.Contains("BusStation"))
+                    {
+                        key = line.Split(separator)[1];
+                        busStationStages.Add(key, new BusStation<PublicTransport>(pictureWidth, pictureHeight));
+                    }
+                    else if (line.Contains(separator))
+                    {
+                        if (line.Contains("DoubleBus"))
+                        {
+                            bus = new DoubleBus(line.Split(separator)[1]);
+                        }
+                        else if (line.Contains("Bus"))
+                        {
+                            bus = new Bus(line.Split(separator)[1]);
+                        }
+                        if (!(busStationStages[key] + bus))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
             }
-            return true;
         }
     }
 }
