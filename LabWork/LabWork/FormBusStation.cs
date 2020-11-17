@@ -168,7 +168,7 @@ namespace LabWork
             }
         }
 
-        //Обработка нажатия пункта мен "Сохранить"
+        //Обработка нажатия пункта меню "Сохранить"
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -184,7 +184,7 @@ namespace LabWork
             }
         }
 
-        //Обработка нажатия пункта мен "Загрузить"
+        //Обработка нажатия пункта меню "Загрузить"
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)

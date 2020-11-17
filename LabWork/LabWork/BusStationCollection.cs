@@ -35,7 +35,6 @@ namespace LabWork
             }
 
             busStationStages.Add(name, new BusStation<PublicTransport>(pictureWidth, pictureHeight));
-
         }
 
         //Удаление записи из словаря
