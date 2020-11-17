@@ -330,7 +330,7 @@
             // 
             // panelGreen
             // 
-            this.panelGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panelGreen.BackColor = System.Drawing.Color.Green;
             this.panelGreen.Location = new System.Drawing.Point(245, 93);
             this.panelGreen.Name = "panelGreen";
             this.panelGreen.Size = new System.Drawing.Size(45, 45);
@@ -348,7 +348,7 @@
             // 
             // panelBlue
             // 
-            this.panelBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.panelBlue.BackColor = System.Drawing.Color.Blue;
             this.panelBlue.Location = new System.Drawing.Point(94, 93);
             this.panelBlue.Name = "panelBlue";
             this.panelBlue.Size = new System.Drawing.Size(45, 45);
@@ -436,6 +436,7 @@
             this.panelBus.ResumeLayout(false);
             this.groupBoxColors.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace LabWork
 {
@@ -16,6 +17,22 @@ namespace LabWork
             FrontPlatform = frontPlatform;
         }
 
+        //Конструктор для загрузки с файла
+        public DoubleBus(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 8)
+            {
+                MainColor = Color.FromName(strs[0]);
+                AverageSpeed = Convert.ToInt32(strs[1]);
+                Weight = Convert.ToInt32(strs[2]);
+                Seats = Convert.ToInt32(strs[3]);
+                AdditionalColor = Color.FromName(strs[4]);
+                SecondFloor = Convert.ToBoolean(strs[5]);
+                AdditionalDoor = Convert.ToBoolean(strs[6]);
+                FrontPlatform = Convert.ToBoolean(strs[7]);
+            }
+        }
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -64,6 +81,12 @@ namespace LabWork
         public void SetAdditionalColor(Color color)
         {
             AdditionalColor = color;
+        }
+
+        //Переопределение метода ToString() для получения строки из объекта
+        public override string ToString()
+        {
+            return $"{MainColor.Name}{separator}{AverageSpeed}{separator}{Weight}{separator}{Seats}{separator}{AdditionalColor.Name}{separator}{SecondFloor}{separator}{AdditionalDoor}{separator}{FrontPlatform}";
         }
     }
 }
