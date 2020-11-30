@@ -43,7 +43,7 @@ namespace LabWork
         //Перегрузка оператора вычитания
         public static T operator -(BusStation<T> busStation, int index)
         {
-            if (index < -1 || index > busStation.places.Count)
+            if (index < -1 || index >= busStation.places.Count)
             {
                 throw new BusStationPlaceNotFoundException(index);
             }
