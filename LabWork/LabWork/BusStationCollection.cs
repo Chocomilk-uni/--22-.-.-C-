@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -67,7 +68,7 @@ namespace LabWork
         }
 
         //Сохранение информации по автобусам на автовокзалах в файл
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             using (StreamWriter sw = new StreamWriter(filename, false, System.Text.Encoding.Default))
             {
@@ -89,16 +90,15 @@ namespace LabWork
                         sw.WriteLine(bus);
                     }
                 }
-                return true;
             }
         }
 
         //Загрузка информации по автобусам на автовокзалах из файла
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
 
             using (StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default))
@@ -109,7 +109,7 @@ namespace LabWork
                 }
                 else
                 {
-                    return false;
+                    throw new FileLoadException("Неверный формат файла");
                 }
 
                 Bus bus = null;
@@ -135,11 +135,10 @@ namespace LabWork
                         }
                         if (!(busStationStages[key] + bus))
                         {
-                            return false;
+                            throw new BusStationOverflowException();
                         }
                     }
                 }
-                return true;
             }
         }
     }

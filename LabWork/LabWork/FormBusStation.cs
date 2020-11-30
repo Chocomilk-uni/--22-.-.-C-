@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,11 +8,15 @@ namespace LabWork
     public partial class FormBusStation : Form
     {
         private readonly BusStationCollection busStationCollection;
+
+        //Логгер
+        private readonly Logger logger;
         public FormBusStation()
         {
             InitializeComponent();
             busStationCollection = new BusStationCollection(pictureBoxBusStation.Width, pictureBoxBusStation.Height);
             Draw();
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         //Заполнение listBox
@@ -102,14 +107,28 @@ namespace LabWork
         {
             if (listBoxBusStations.SelectedIndex > -1 && maskedTextBoxPlaceNumber.Text != "")
             {
-                var bus = busStationCollection[listBoxBusStations.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxPlaceNumber.Text);
-                if (bus != null)
+                try
                 {
-                    FormBus form = new FormBus();
-                    form.SetBus(bus);
-                    form.ShowDialog();
+                    var bus = busStationCollection[listBoxBusStations.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxPlaceNumber.Text);
+                    if (bus != null)
+                    {
+                        FormBus form = new FormBus();
+                        form.SetBus(bus);
+                        form.ShowDialog();
+                        logger.Info($"Изъят автобус {bus} с места {maskedTextBoxPlaceNumber.Text}");
+                        Draw();
+                    }
                 }
-                Draw();
+                catch (BusStationPlaceNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
             }
         }
 
@@ -120,6 +139,7 @@ namespace LabWork
                 MessageBox.Show("Введите название автовокзала", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            logger.Info($"Добавили автовокзал {textBoxNewLevelName.Text}");
             busStationCollection.AddBusStation(textBoxNewLevelName.Text);
             ReloadLevels();
         }
@@ -130,6 +150,7 @@ namespace LabWork
             {
                 if (MessageBox.Show($"Удалить автовокзал {listBoxBusStations.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info($"Удалили автовокзал {listBoxBusStations.SelectedItem.ToString()}");
                     busStationCollection.DelBusStation(listBoxBusStations.SelectedItem.ToString());
                     ReloadLevels();
                 }
@@ -138,6 +159,7 @@ namespace LabWork
 
         private void listBoxBusStations_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info($"Перешли на автовокзал {listBoxBusStations.SelectedItem.ToString()}");
             Draw();
         }
 
@@ -157,13 +179,28 @@ namespace LabWork
         {
             if (bus != null && listBoxBusStations.SelectedIndex > -1)
             {
-                if ((busStationCollection[listBoxBusStations.SelectedItem.ToString()]) + bus)
+                try
                 {
+                    if ((busStationCollection[listBoxBusStations.SelectedItem.ToString()]) + bus)
+                    {
+                        Draw();
+                        logger.Info($"Добавлен автобус {bus}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Автобус не удалось поставить");
+                    }
                     Draw();
                 }
-                else
+                catch (BusStationOverflowException ex)
                 {
-                    MessageBox.Show("Автобус не удалось поставить");
+                    MessageBox.Show(ex.Message, "Переполнение автовокзала", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
                 }
             }
         }
@@ -173,13 +210,16 @@ namespace LabWork
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (busStationCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
+                    busStationCollection.SaveData(saveFileDialog.FileName);
                     MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не удалось сохранить", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
                 }
             }
         }
@@ -189,15 +229,24 @@ namespace LabWork
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (busStationCollection.LoadData(openFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Загрузка прошла успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    busStationCollection.LoadData(openFileDialog.FileName);
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                     ReloadLevels();
                     Draw();
                 }
-                else
+                catch (BusStationOverflowException ex)
                 {
-                    MessageBox.Show("Не удалось загрузить", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
                 }
             }
         }

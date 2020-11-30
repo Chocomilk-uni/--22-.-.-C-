@@ -32,24 +32,24 @@ namespace LabWork
         //Перегрузка оператора сложения
         public static bool operator +(BusStation<T> busStation, T bus)
         {
-            if (busStation.places.Count < busStation.maxCount)
+            if (busStation.places.Count >= busStation.maxCount)
             {
-                busStation.places.Add(bus);
-                return true;
+                throw new BusStationOverflowException();
             }
-            return false;
+            busStation.places.Add(bus);
+            return true;
         }
 
         //Перегрузка оператора вычитания
         public static T operator -(BusStation<T> busStation, int index)
         {
-            if (index >= 0 && index < busStation.maxCount && busStation.places[index] != null)
+            if (index < -1 || index > busStation.places.Count)
             {
-                T bus = busStation.places[index];
-                busStation.places.RemoveAt(index);
-                return bus;
+                throw new BusStationPlaceNotFoundException(index);
             }
-            return null;
+            T bus = busStation.places[index];
+            busStation.places.RemoveAt(index);
+            return bus;
         }
 
         //Метод отрисовки автовокзала
