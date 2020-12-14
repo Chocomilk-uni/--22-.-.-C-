@@ -75,8 +75,8 @@ namespace LabWork
                 foreach (var level in busStationStages)
                 {
                     sw.WriteLine("BusStation" + separator + level.Key);
-                    ITransport bus;
-                    for (int i = 0; (bus = level.Value.GetNext(i)) != null; i++)
+
+                    foreach (Bus bus in level.Value)
                     {
                         if (bus.GetType().Name == "Bus")
                         {

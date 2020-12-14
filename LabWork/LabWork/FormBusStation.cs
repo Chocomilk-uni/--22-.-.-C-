@@ -197,6 +197,11 @@ namespace LabWork
                     MessageBox.Show(ex.Message, "Переполнение автовокзала", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn(ex.Message);
                 }
+                catch (BusStationAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -248,6 +253,17 @@ namespace LabWork
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn(ex.Message);
                 }
+            }
+        }
+
+        //Обработка нажатия кнопки "Сортировать"
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxBusStations.SelectedIndex > -1)
+            {
+                busStationCollection[listBoxBusStations.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

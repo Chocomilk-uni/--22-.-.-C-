@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace LabWork
 {
-    class BusStation<T> where T : class, ITransport
+    class BusStation<T> : IEnumerator<T>, IEnumerable<T> 
+        where T : class, ITransport
     {
         //Список объектов, которые храним (заменили массив)
         private readonly List<T> places;
@@ -19,12 +21,18 @@ namespace LabWork
         private readonly int placeSizeWidth = 230;
         private readonly int placeSizeHeight = 100;
 
+        //Текущий элемент для вывода через IEnumerator
+        private int currentIndex;
+        public T Current => places[currentIndex];
+        object IEnumerator.Current => places[currentIndex];
+
         public BusStation(int picWidth, int picHeight)
         {
             int columnsNumber = picWidth / placeSizeWidth;
             int rowsNumber = picHeight / placeSizeHeight;
             maxCount = columnsNumber * rowsNumber;
             places = new List<T>();
+            currentIndex = -1;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
         }
@@ -35,6 +43,10 @@ namespace LabWork
             if (busStation.places.Count >= busStation.maxCount)
             {
                 throw new BusStationOverflowException();
+            }
+            if (busStation.places.Contains(bus))
+            {
+                throw new BusStationAlreadyHaveException();
             }
             busStation.places.Add(bus);
             return true;
@@ -91,6 +103,37 @@ namespace LabWork
                 return null;
             }
             return places[index];
+        }
+
+        //Сортировка автобусов на автовокзале
+        public void Sort() => places.Sort((IComparer<T>)new BusComparer());
+
+        //Метод интерфейса IEnumerator, вызываемый при удалении объекта
+        public void Dispose()
+        {
+        }
+
+        //Метод интерфейса IEnumerator для перехода к следующему элементу или началу коллекции
+        public bool MoveNext()
+        {
+            currentIndex++;
+            return currentIndex < places.Count;
+        }
+
+        //Метод интерфейса IEnumerator для сброса и возврата к началу коллекции
+        public void Reset()
+        {
+            currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

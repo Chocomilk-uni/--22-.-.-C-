@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace LabWork
 {
-    public class Bus : PublicTransport
+    public class Bus : PublicTransport, IEquatable<Bus>
     {
         //Размеры автобуса
         protected readonly int busHeight = 60;
@@ -103,6 +103,53 @@ namespace LabWork
         public override string ToString()
         {
             return $"{MainColor.Name}{separator}{AverageSpeed}{separator}{Weight}{separator}{Seats}";
+        }
+
+        //Метод интерфейса IEquatable для класса Bus
+        public bool Equals(Bus other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (AverageSpeed != other.AverageSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (Seats != other.Seats)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Перегрузка метода от object
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Bus busObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(busObj);
+            }
         }
     }
 }
