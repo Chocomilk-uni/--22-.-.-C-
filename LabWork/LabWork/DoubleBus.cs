@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace LabWork
 {
-    class DoubleBus : Bus
+    class DoubleBus : Bus, IEquatable<DoubleBus>
     {
         public Color AdditionalColor { private set; get; }
         public bool SecondFloor { private set; get; }
@@ -87,6 +87,69 @@ namespace LabWork
         public override string ToString()
         {
             return $"{MainColor.Name}{separator}{AverageSpeed}{separator}{Weight}{separator}{Seats}{separator}{AdditionalColor.Name}{separator}{SecondFloor}{separator}{AdditionalDoor}{separator}{FrontPlatform}";
+        }
+
+        //Метод интерфейса IEquatable для класса DoubleBus
+        public bool Equals(DoubleBus other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (AverageSpeed != other.AverageSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (Seats != other.Seats)
+            {
+                return false;
+            }
+            if (AdditionalColor != other.AdditionalColor)
+            {
+                return false;
+            }
+            if (SecondFloor != other.SecondFloor)
+            {
+                return false;
+            }    
+            if (AdditionalDoor != other.AdditionalDoor)
+            {
+                return false;
+            }
+            if (FrontPlatform != other.FrontPlatform)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Перегрузка метода от object
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is DoubleBus busObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(busObj);
+            }
         }
     }
 }
